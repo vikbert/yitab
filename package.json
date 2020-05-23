@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "YiTab",
     "scripts": {
+        "test": "jest",
         "lint": "eslint . --ext .ts",
         "build": "webpack --config webpack.prod.js",
         "dev": "webpack --config webpack.dev.js",
@@ -12,6 +13,7 @@
     "license": "MIT",
     "devDependencies": {
         "@types/chrome": "^0.0.60",
+        "@types/jest": "^25.2.3",
         "@types/node": "^14.0.5",
         "@types/react": "^16.9.32",
         "@types/react-dom": "^16.9.6",
@@ -19,14 +21,16 @@
         "@typescript-eslint/parser": "^2.29.0",
         "css-loader": "^3.4.2",
         "eslint": "^6.8.0",
+        "jest": "^26.0.1",
         "less-loader": "^6.0.0",
         "node-sass": "^4.14.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "store": "^2.0.12",
         "style-loader": "^0.20.3",
+        "ts-jest": "^26.0.0",
         "ts-loader": "^4.0.1",
-        "typescript": "^3.8.0",
+        "typescript": "^3.9.3",
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11",
         "webpack-merge": "^4.2.2"

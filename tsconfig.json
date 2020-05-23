@@ -12,6 +12,7 @@
     "sourceMap": true,
     "target": "es5"
   },
+  "exclude": ["node_modules", "**/*.spec.ts"],
   "rules": {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"]
