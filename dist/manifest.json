@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "yitab",
+  "description": "yitab",
+  "version": "1.0.0",
+  "browser_action": {
+    "default_icon": "logo.png"
+  },
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "options_page": "yitab.html",
+  "permissions": ["<all_urls>","tabs", "storage"]
+}
