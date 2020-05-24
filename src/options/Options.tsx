@@ -17,29 +17,29 @@ const Options = () => {
     }, []);
 
     return appManager && (
-        <div className="app-wrapper">
-            <div className="app-header">
-                <div className="header-logo">
-                    <span>Yi Tab</span>
-                </div>
-                <div className="header-info">
-                    Gesamt: {counter} Tabs
-                </div>
+        <>
+            <div className="bg"/>
+            <div className="wrapper">
+                <header className="header">
+                    <div className='header-logo'/>
+                    <div className="header-info">I</div>
+                </header>
+                <section className="content">
+                    {/* <nav>sidebar</nav> */}
+                    <main>
+                        {!appManager.isEmpty() && (<>
+                            {Object.values(appManager.appData).map((tabSet: TabSetType) => (
+                                <TabSet
+                                    appManager={appManager}
+                                    tabSetKey={tabSet.createdAt.toString()}
+                                    key={tabSet.createdAt}
+                                />
+                            ))}
+                        </>)}
+                    </main>
+                </section>
             </div>
-            {!appManager.isEmpty() && (
-                <div className="app-main">
-                    {Object.values(appManager.appData).map((tabSet: TabSetType) => {
-                        return (
-                            <TabSet
-                                appManager={appManager}
-                                tabSetKey={tabSet.createdAt.toString()}
-                                key={tabSet.createdAt}
-                            />
-                        );
-                    })}
-                </div>
-            )}
-        </div>
+        </>
     );
 };
 

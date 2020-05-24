@@ -3,31 +3,83 @@ body {
   margin: 0;
 }
 
-.app-wrapper {
-  padding: 15px;
-  border-right: 1px solid #55555524;
-  border-left: 1px solid #55555524;
-  width: 800px;
-  margin: 0 auto;
+.wrapper {
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 50px 1fr;
 }
 
-.app-header {
-
+header {
+  overflow: hidden;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #76867f;
+  -webkit-box-shadow: 1px 11px 15px -8px rgba(43,43,40,1);
+  -moz-box-shadow: 1px 11px 15px -8px rgba(43,43,40,1);
+  box-shadow: 1px 11px 15px -8px rgba(43,43,40,1);
+  color: #ffffff;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  padding-left: 10px;
 
   .header-logo {
-    font-size: 3rem;
+    display: inline-block;
+    width: 31px;
+    height: 40px;
+    background: url("../../dist/logo.png") no-repeat;
+    filter: invert(1);
+    background-size: 39px 28px;
+    background-position: center;
   }
-
+  
   .header-info {
-    font-size: 1.5rem;
-    margin: 0 30px;
+    color: #ffffffcc;
+    margin-left: -8px;
+    font-size: 1.2rem;
+    line-height: 50px;
+    font-weight: 700;
   }
 }
 
-.app-main {
-    margin-top: 30px;
+.content {
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  
+  @nav-width: 150px;
+  nav {
+    position: fixed;
+    left: 0;
+    top: 50px;
+    background-color: #ffffff;
+    padding: 15px;
+    height: 100%;
+    width: @nav-width;
+  }
+  main {
+    margin: 0 auto;
+    padding: 15px 0;
+    min-height: 900px;
+    max-height: 90%;
+    width: 96vw;
+    max-width: 920px;
+    overflow: scroll;
+  }
 }
+.bg {
+  z-index: -100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../dist/images/berlin-2.png") no-repeat;
+  background-size: cover;
+  box-sizing:border-box;
+  background-attachment: fixed;
+}
+

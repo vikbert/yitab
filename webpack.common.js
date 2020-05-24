@@ -27,6 +27,10 @@ module.exports = {
                 test: /\.(less|css)$/,
                 use: ['style-loader', 'css-loader', 'less-loader'],
             },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: 'file-loader?name=/images/[name].[ext]',
+            },
         ],
     },
     resolve: {
