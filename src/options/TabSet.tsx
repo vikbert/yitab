@@ -17,8 +17,9 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
 
     const {updates, refreshUpdates} = useUpdates();
 
-    const handleDelete = (tabId: number): void => {
+    const handleDeleteTab = (tabId: number): void => {
         appManager.deleteTab(tabSetKey, tabId);
+        refreshUpdates();
     };
 
     const handleRecall = () => {
@@ -74,7 +75,7 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
             <div className="body">
                 {tabs.map((tab: TabType) => (
                     <div className="tab-item" key={tab.id}>
-                        <div className="item-delete" onClick={() => handleDelete(tab.id)}>✖️</div>
+                        <div className="item-delete" onClick={() => handleDeleteTab(tab.id)}>✖️</div>
                         <img src={tab.favIconUrl} alt="favicon"/>
                         <div className="item-title">
                             <a href={tab.url}>{tab.title}</a>
