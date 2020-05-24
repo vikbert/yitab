@@ -1,15 +1,15 @@
-import AppData from './AppData';
-import Tab from './Tab';
-import TabSet from './TabSet';
+import AppDataType from './AppDataType';
+import TabSetType from './TabSetType';
+import TabType from './TabType';
 
 class AppManager {
-    _appData: AppData;
+    _appData: AppDataType;
 
-    constructor(data: AppData) {
+    constructor(data: AppDataType) {
         this._appData = data;
     }
 
-    get appData(): AppData {
+    get appData(): AppDataType {
         return this._appData;
     }
 
@@ -19,54 +19,78 @@ class AppManager {
 
     count(tabSetKey?: string): number {
         if (tabSetKey) {
-            return this.getTabSet(tabSetKey).tabs.length;
+            const tabset = this.getTabSet(tabSetKey);
+
+            return tabset && tabset.tabs ? tabset.tabs.length : 0;
         }
 
-        const countEachSet = Object.values(this._appData).map((tabSet: TabSet) => tabSet.tabs.length);
+        if (Object.keys(this._appData).length === 0) {
+            return 0;
+        }
+
+        const countEachSet = Object.values(this._appData).map((tabSet: TabSetType) => tabSet.tabs && tabSet.tabs.length);
 
         return countEachSet.reduce((sum, x) => sum + x, 0);
     }
 
-    getTabSet(tabSetKey: string): TabSet {
+    insertTabSet(tabSet: TabSetType): void {
+        if (tabSet.tabs && tabSet.tabs.length) {
+            this._appData[tabSet.createdAt] = tabSet;
+        }
+    }
+
+    getTabSet(tabSetKey: string): TabSetType {
         return this._appData[tabSetKey];
     }
 
     deleteTabSet(tabSetKey: string): void {
-        delete this._appData[tabSetKey];
+        const tabset = this.getTabSet(tabSetKey);
+
+        if (tabset && !tabset.isLocked && !tabset.isStarred) {
+            delete this._appData[tabSetKey];
+        }
+    }
+
+    deleteTab(tabSetKey: string, tabId: number): void {
+        const tabset = this.getTabSet(tabSetKey);
+        const filteredTabs = tabset.tabs.filter((tab: TabType) => tab.id !== tabId);
+
+        if (filteredTabs.length === 0) {
+            this.deleteTabSet(tabSetKey);
+        }
+
+        tabset.tabs = filteredTabs;
     }
 
     recallTabSet(tabSetKey: string): Array<string> {
         const mySet = this.getTabSet(tabSetKey);
 
+        if (!mySet) {
+            return [];
+        }
+
         if (!mySet.isLocked && !mySet.isStarred) {
             this.deleteTabSet(tabSetKey);
         }
 
-        return mySet.tabs.map((tab: Tab) => tab.url);
+        return mySet.tabs.map((tab: TabType) => tab.url);
     }
 
-    lockTabSet(tabSetKey: string): TabSet {
+    toggleIsLocked(tabSetKey: string): TabSetType {
         const mySet = this.getTabSet(tabSetKey);
-        mySet.isLocked = true;
+        mySet.isLocked = !mySet.isLocked;
 
         return mySet;
     }
 
-    unlockTabSet(tabSetKey: string): TabSet {
+    toggleIsStarred(tabSetKey: string): TabSetType {
         const mySet = this.getTabSet(tabSetKey);
-        mySet.isLocked = false;
+        mySet.isStarred = !mySet.isStarred;
 
         return mySet;
     }
 
-    unstarTabSet(tabSetKey: string): TabSet {
-        const mySet = this.getTabSet(tabSetKey);
-        mySet.isStarred = false;
-
-        return mySet;
-    }
-
-    changeTabSetTitle(tabSetKey: string, newTitle: string): TabSet {
+    changeTabSetTitle(tabSetKey: string, newTitle: string): TabSetType {
         const mySet = this.getTabSet(tabSetKey);
         mySet.title = newTitle;
 

@@ -11,6 +11,44 @@ describe('AppManager', () => {
         expect(manager.isEmpty()).toBeFalsy();
     });
 
+    it('insertTabSet', () => {
+        const tabset3 = {
+            'createdAt': 159026222003,
+            'title': 'set3',
+            'isStarred': false,
+            'isLocked': false,
+            'tabs': [
+                {
+                    'id': 120,
+                    'favIconUrl': 'https://www.google.de/favicon.ico',
+                    'title': 'Google',
+                    'url': 'https://www.google.de/',
+                    'status': 'completed',
+                    'pinned': false,
+                },
+            ],
+        };
+
+        const prevCount = manager.count();
+        expect(prevCount).toEqual(2);
+
+        manager.insertTabSet(tabset3);
+
+        const currentCount = manager.count();
+        expect(currentCount).toEqual(3);
+
+        const tabset4 = {
+            'createdAt': 1590262226004,
+            'title': 'set3',
+            'isStarred': false,
+            'isLocked': false,
+            'tabs': [],
+        };
+        // check, tabset wihout tabs will not be inserted
+        manager.insertTabSet(tabset4);
+        expect(Object.keys(manager.appData).length).toEqual(3);
+    });
+
     it('count()', () => {
         const allTabs = manager.count();
         expect(allTabs).toEqual(2);
@@ -34,8 +72,14 @@ describe('AppManager', () => {
     });
 
     it('deleteTabSet()', () => {
+        // key1 is not deletable
         expect(manager.count()).toEqual(2);
         manager.deleteTabSet('key1');
+        expect(manager.count()).toEqual(2);
+
+        // key2 is deletable
+        expect(manager.count()).toEqual(2);
+        manager.deleteTabSet('key2');
         expect(manager.count()).toEqual(1);
     });
 
@@ -50,18 +94,21 @@ describe('AppManager', () => {
         expect(manager.count()).toEqual(1);
     });
 
-    it('lockTabSet()', () => {
-        const mySet = manager.lockTabSet('key2');
+    it('toggleIsLocked()', () => {
+        let mySet;
+        mySet = manager.toggleIsLocked('key2');
         expect(mySet.isLocked).toBeTruthy();
-    });
 
-    it('unlockTabSet()', () => {
-        const mySet = manager.unlockTabSet('key2');
+        mySet = manager.toggleIsLocked('key2');
         expect(mySet.isLocked).toBeFalsy();
     });
 
-    it('starTabSet()', () => {
-        const mySet = manager.unstarTabSet('key2');
+    it('toggleIsStarred()', () => {
+        let mySet;
+        mySet = manager.toggleIsStarred('key2');
+        expect(mySet.isStarred).toBeTruthy();
+
+        mySet = manager.toggleIsStarred('key2');
         expect(mySet.isStarred).toBeFalsy();
     });
 

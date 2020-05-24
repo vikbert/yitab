@@ -1,32 +1,44 @@
 import React, {useEffect, useState} from 'react';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import AppManager from '../models/AppManager';
+import TabSetType from '../models/TabSetType';
+import {loadAppManager} from '../storage/tabStore';
 import './options.less';
 import TabSet from './TabSet';
-import {loadTabs} from '../storage/tabStore';
 
 const Options = () => {
     useDocumentTitle('Yi Tab');
-    const [tabs, setTabs] = useState({});
+    const [appManager, setAppManager] = useState(new AppManager({}));
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
-        setTabs(loadTabs());
+        setAppManager(loadAppManager());
+        setCounter(appManager.count());
     }, []);
 
-    return (
+    return appManager && (
         <div className="app-wrapper">
             <div className="app-header">
                 <div className="header-logo">
                     <span>Yi Tab</span>
                 </div>
                 <div className="header-info">
-                    Gesamt: 49 Tabs
+                    Gesamt: {counter} Tabs
                 </div>
             </div>
-            <div className="app-main">
-                {Object.keys(tabs).map((key) => (
-                    <TabSet tabSet={tabs[key]} timestamp={parseInt(key, 10)} key={key}/>
-                ))}
-            </div>
+            {!appManager.isEmpty() && (
+                <div className="app-main">
+                    {Object.values(appManager.appData).map((tabSet: TabSetType) => {
+                        return (
+                            <TabSet
+                                appManager={appManager}
+                                tabSetKey={tabSet.createdAt.toString()}
+                                key={tabSet.createdAt}
+                            />
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 };

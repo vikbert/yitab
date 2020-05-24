@@ -1,5 +1,6 @@
 export const mockAppData = {
     'key1': {
+        'createdAt': 1590262226001,
         'title': 'set1',
         'isStarred': true,
         'isLocked': true,
@@ -15,6 +16,7 @@ export const mockAppData = {
         ],
     },
     'key2': {
+        'createdAt': 1590262226002,
         'title': 'set2',
         'isStarred': false,
         'isLocked': false,

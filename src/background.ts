@@ -1,5 +1,6 @@
-import {insertTabs} from './storage/tabStore';
-import Tab from './models/Tab';
+import TabType from './models/TabType';
+import {loadAppManager, saveAppManager} from './storage/tabStore';
+import {filterTabs} from './utils/chromeTabsHelper';
 
 // Listen to messages sent from other parts of the extension.
 chrome.runtime.onMessage.addListener((request) => {
@@ -18,34 +19,21 @@ chrome.runtime.onMessage.addListener((request) => {
 
 chrome.browserAction.onClicked.addListener(() => {
     chrome.tabs.query({currentWindow: true}, (tabs) => {
-        // exclude the tabs: chrome-extension, chrome://, brave://
-        const filtered = tabs.filter((tab) => {
-            return !tab.url.includes('chrome-extension') &&
-            !tab.url.includes('brave://') &&
-            !tab.url.includes('chrome://');
-        });
+        chrome.runtime.openOptionsPage();
 
-        // save tabs to local storage
-        const tabData = filtered.map((item) => {
-            return {
-                id: item.id,
-                favIconUrl: item.favIconUrl,
-                title: item.title,
-                url: item.url,
-                status: item.status,
-                pinned: item.pinned,
-            };
-        });
-        insertTabs(tabData);
+        const {yiTabId, tabsToClose, tabsToSave} = filterTabs(tabs);
+        chrome.tabs.remove(tabsToClose.map((item: TabType) => item.id));
+        chrome.tabs.reload(yiTabId);
 
-        // close all tabs
-        chrome.tabs.remove(tabData.map((tab): number => tab.id), () => null);
-
-        // open option page(yiTab), then reload this tab
-        chrome.runtime.openOptionsPage(() => null);
-        chrome.tabs.getCurrent((tab) => {
-            console.log('reload tab', tab);
-            chrome.tabs.reload(tab.id);
-        });
+        if (tabsToSave.length > 0) {
+            const appManager = loadAppManager();
+            appManager.insertTabSet({
+                createdAt: (new Date()).getTime(),
+                isStarred: false,
+                isLocked: false,
+                tabs: tabsToSave,
+            });
+            saveAppManager(appManager);
+        }
     });
 });

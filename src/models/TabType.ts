@@ -1,4 +1,4 @@
-interface Tab {
+interface TabType {
     id: number;
     favIconUrl: string;
     title: string;
@@ -7,4 +7,4 @@ interface Tab {
     pinned: boolean;
 }
 
-export default Tab;
+export default TabType;
