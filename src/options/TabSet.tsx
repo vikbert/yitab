@@ -4,6 +4,7 @@ import AppManager from '../models/AppManager';
 import TabType from '../models/TabType';
 import {saveAppManager} from '../storage/tabStore';
 import './tabSet.less';
+import Calender from './calender';
 
 type TabSetProps = {
     appManager: AppManager;
@@ -85,10 +86,7 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                 ))}
             </div>
             <div className="meta">
-                <div className='calender'>
-                    <div className='month'>{date.toUTCString().substr(7, 4)}</div>
-                    <div className='day'>{date.toLocaleDateString().substr(0, 2)}</div>
-                </div>
+                <Calender date={date}/>
                 {tabSet.isStarred && <span className="icon icon-bookmark"/>}
                 {tabSet.isLocked && <span className="icon icon-lock"/>}
             </div>
