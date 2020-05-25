@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?i5weev');
-  src:  url('fonts/icomoon.eot?i5weev#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?i5weev') format('truetype'),
-    url('fonts/icomoon.woff?i5weev') format('woff'),
-    url('fonts/icomoon.svg?i5weev#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?chysap');
+  src:  url('fonts/icomoon.eot?chysap#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?chysap') format('truetype'),
+    url('fonts/icomoon.woff?chysap') format('woff'),
+    url('fonts/icomoon.svg?chysap#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -31,6 +31,9 @@
 .icon-lock:before {
   content: "\e900";
 }
+.icon-rotate-ccw:before {
+  content: "\e905";
+}
 .icon-search1:before {
   content: "\e902";
 }
@@ -43,21 +46,6 @@
 .icon-x:before {
   content: "\e903";
 }
-.icon-play:before {
-  content: "\e912";
-}
-.icon-alarm:before {
-  content: "\e950";
-}
-.icon-drawer2:before {
-  content: "\e95d";
-}
-.icon-menu:before {
-  content: "\e9bd";
-}
-.icon-windows:before {
-  content: "\eac1";
-}
-.icon-codepen:before {
-  content: "\eae8";
+.icon-bookmark1:before {
+  content: "\e9d2";
 }

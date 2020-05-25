@@ -1,50 +1,53 @@
 .tab-set {
   margin: 0 0 10px;
-  padding: 15px;
-  background-color: #ffffffe3;
+  background-color: #fffefee6;
   border-radius: 5px;
   min-width: 600px;
+  min-height: 135px;
   display: grid;
-  grid-template-columns: 1fr 50px;
+  grid-template-columns: 1fr 94px;
   grid-template-rows: auto;
   grid-template-areas: 
-    "header meta"
+    "header header"
     "body   meta";
   a {
     color: #0e0e0ebd;
   }
   .header {
     grid-area: header;
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 23px 1fr repeat(4, 40px);
     align-items: center;
-
+    background: #ffffff8a;
+    border-bottom: 1px solid #dedede;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 15px 15px 13px 15px;
+    margin-bottom: 15px;
     .counter {
       font-size: 1.5rem;
       width: 95px;
+      padding: 0 15px;
     }
-    .control {
-      flex-grow: 1;
-      .control-row {
-        line-height: 17px;
+    .icon {
+      padding-right: 15px;
+      cursor: pointer;
+      font-size: 25px;
+      text-transform: capitalize;
+      color: #989696;
+      &:hover {
+        color: darkorange;
       }
-  
-      .actions {
-        flex-grow: 1;
-        display: flex;
-        justify-content: flex-start;
-        .action {
-          cursor: pointer;
-          padding-right: 15px;
-          text-transform: capitalize;
-        }
-      }
+    }
+    .icon.selected {
+      color: darkorange;
+      font-weight: 900;
     }
   }
 
   .body {
     grid-area: body;
-    margin-top: 15px;
+    padding: 0 15px 15px;
   
     .tab-item {
       display: grid;
@@ -54,6 +57,7 @@
       .item-delete {
         font-size: 15px;
         padding: 5px;
+        color: #9c9a9a;
         &:hover {
           color: red;
         }
@@ -72,44 +76,10 @@
   .meta {
     height: 100%;
     grid-area: meta;
-    display: grid;
-    grid-template-rows: 53px 30px 30px;
+    display:flex;
     justify-items: center;
     align-items: center;
-    .calender {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 3px;
-      .month,.day {
-        padding: 2px 1px;
-        width: 30px;
-        text-align: center;
-        font-weight: 700;
-      }
-      .month {
-        @month-color: #f16413;
-        background-color: @month-color;
-        border-left: 1px solid @month-color;
-        border-right: 1px solid @month-color;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-        color: #ffffff;
-        font-size: 10px;
-        text-transform: uppercase;
-      }
-      .day {
-        @day-color: #bdbcbb;
-        border-left: 1px solid @day-color;
-        border-right: 1px solid @day-color;
-        border-bottom: 1px solid @day-color;
-        font-size: 16px;
-        border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 5px;
-      }
-    }
+
     .icon {
       color: #0000008c;
       font-size: 20px;

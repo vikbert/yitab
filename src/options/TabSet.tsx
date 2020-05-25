@@ -5,6 +5,7 @@ import TabType from '../models/TabType';
 import {saveAppManager} from '../storage/tabStore';
 import './tabSet.less';
 import Calender from './calender';
+import classnames from 'classnames';
 
 type TabSetProps = {
     appManager: AppManager;
@@ -58,20 +59,16 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
     return (
         <div className="tab-set">
             <div className="header">
+                <div></div>
                 <div className="counter">{tabs.length} Tabs</div>
-                <div className="control">
-                    <div className="control-row created-at">
-                        {`Erstellt am ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}
-                    </div>
-                    <div className="control-row actions">
-                        <div className="action" onClick={handleRecall}>alle wiederherstellen</div>
-                        <div className="action" onClick={handleDeleteAll}>alle löschen</div>
-                        <div className="action"
-                            onClick={handleToggleIsLocked}>{tabSet.isLocked ? 'entsperren' : 'sperren'}</div>
-                        <div className="action"
-                            onClick={handleToggleIsStarred}>{tabSet.isStarred ? 'Markierung aufheben' : 'markieren'}</div>
-                    </div>
-                </div>
+                <div className="action icon icon-rotate-ccw"
+                    onClick={handleRecall}/>
+                <div className="action icon icon-x"
+                    onClick={handleDeleteAll}/>
+                <div className={classnames('action icon icon-bookmark', {'selected': tabSet.isStarred})}
+                    onClick={handleToggleIsStarred}/>
+                <div className={classnames('action icon icon-lock', {'selected': tabSet.isLocked})}
+                    onClick={handleToggleIsLocked}/>
             </div>
             <div className="body">
                 {tabs.map((tab: TabType) => (
@@ -86,9 +83,7 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                 ))}
             </div>
             <div className="meta">
-                <Calender date={date}/>
-                {tabSet.isStarred && <span className="icon icon-bookmark"/>}
-                {tabSet.isLocked && <span className="icon icon-lock"/>}
+                {/* <Calender date={date}/> */}
             </div>
         </div>
     );
