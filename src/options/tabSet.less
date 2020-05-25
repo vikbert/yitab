@@ -43,6 +43,11 @@
       color: darkorange;
       font-weight: 900;
     }
+    .icon.disabled {
+      cursor: not-allowed;
+      color: #dedede;
+      font-weight: 200;
+    }
   }
 
   .body {
@@ -61,6 +66,9 @@
         &:hover {
           color: red;
         }
+      }
+      .item-delete.disabled {
+        cursor: not-allowed;
       }
       cursor: pointer;
       img{

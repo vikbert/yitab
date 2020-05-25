@@ -20,6 +20,10 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
     const {updates, refreshUpdates} = useUpdates();
 
     const handleDeleteTab = (tabId: number): void => {
+        if (tabSet.isLocked) {
+            return;
+        }
+
         appManager.deleteTab(tabSetKey, tabId);
         refreshUpdates();
     };
@@ -63,7 +67,7 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                 <div className="counter">{tabs.length} Tabs</div>
                 <div className="action icon icon-rotate-ccw"
                     onClick={handleRecall}/>
-                <div className="action icon icon-x"
+                <div className={classnames('action icon icon-x', {'disabled': (tabSet.isStarred || tabSet.isStarred)})}
                     onClick={handleDeleteAll}/>
                 <div className={classnames('action icon icon-bookmark', {'selected': tabSet.isStarred})}
                     onClick={handleToggleIsStarred}/>
@@ -73,7 +77,8 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
             <div className="body">
                 {tabs.map((tab: TabType) => (
                     <div className="tab-item" key={tab.id}>
-                        <div className="item-delete icon icon-x" onClick={() => handleDeleteTab(tab.id)}>
+                        <div className={classnames('item-delete icon icon-x', {'disabled': tabSet.isLocked})}
+                            onClick={() => handleDeleteTab(tab.id)}>
                         </div>
                         <img src={tab.favIconUrl} alt={' '}/>
                         <div className="item-title">
@@ -83,7 +88,6 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                 ))}
             </div>
             <div className="meta">
-                {/* <Calender date={date}/> */}
             </div>
         </div>
     );
