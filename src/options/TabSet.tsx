@@ -75,13 +75,22 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
             <div className="body">
                 {tabs.map((tab: TabType) => (
                     <div className="tab-item" key={tab.id}>
-                        <div className="item-delete" onClick={() => handleDeleteTab(tab.id)}>✖️</div>
-                        <img src={tab.favIconUrl} alt="favicon"/>
+                        <div className="item-delete icon icon-x" onClick={() => handleDeleteTab(tab.id)}>
+                        </div>
+                        <img src={tab.favIconUrl} alt={' '}/>
                         <div className="item-title">
                             <a href={tab.url}>{tab.title}</a>
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="meta">
+                <div className='calender'>
+                    <div className='month'>{date.toUTCString().substr(7, 4)}</div>
+                    <div className='day'>{date.toLocaleDateString().substr(0, 2)}</div>
+                </div>
+                {tabSet.isStarred && <span className="icon icon-bookmark"/>}
+                {tabSet.isLocked && <span className="icon icon-lock"/>}
             </div>
         </div>
     );

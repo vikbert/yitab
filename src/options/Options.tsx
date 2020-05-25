@@ -21,8 +21,16 @@ const Options = () => {
             <div className="bg"/>
             <div className="wrapper">
                 <header className="header">
-                    <div className='header-logo'/>
-                    <div className="header-info">I</div>
+                    <div className='logo'>
+                        <div className='header-logo'/>
+                        <div className="header-info">I</div>
+                    </div>
+                    <div className="search">
+                        <span className="icon icon-search1"></span>
+                    </div>
+                    <div className="settings">
+                        <span className="icon icon-settings"></span>
+                    </div>
                 </header>
                 <section className="content">
                     {/* <nav>sidebar</nav> */}
