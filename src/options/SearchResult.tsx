@@ -1,32 +1,49 @@
-import classnames from 'classnames';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {createNewTabSet} from '../models/TabSetFactory';
 import TabType from '../models/TabType';
+import {openTabs, reloadCurrentTab} from '../utils/chromeTabsHelper';
 
-export default function SearchResult({tabs = []}) {
-    const tabSet = {
-        isStarred: false,
-        isLocked: false,
+export default function SearchResult({tabs}) {
+    const [list, setList] = useState([]);
+
+    const handleAddResult = () => {
+        const newTabset = createNewTabSet(list);
     };
 
-    return tabs && (
+    const handleOpenResult = () => {
+        openTabs(list);
+    };
+
+    const handleRemoveTab = (targetId: number) => {
+        const filtered = list.filter((tab: TabType) => tab.id !== targetId);
+        setList(filtered);
+
+        if (filtered.length === 0) {
+            reloadCurrentTab();
+        }
+    };
+
+    useEffect(() => {
+        setList(tabs || []);
+    }, [tabs]);
+
+    return list && (
         <div className="tab-set">
             <div className="header">
                 <div></div>
-                <div className="counter">Found {tabs.length} Tabs</div>
+                <div className="counter">Found {list.length} Tabs</div>
                 <div className="action icon icon-rotate-ccw"
-                    onClick={() => null}/>
-                <div className={classnames('action icon icon-x', {'disabled': (tabSet.isStarred || tabSet.isStarred)})}
-                    onClick={() => null}/>
-                <div className={classnames('action icon icon-bookmark', {'selected': tabSet.isStarred})}
-                    onClick={() => null}/>
-                <div className={classnames('action icon icon-lock', {'selected': tabSet.isLocked})}
-                    onClick={() => null}/>
+                    onClick={handleOpenResult}/>
+                <div
+                    className={'action icon icon-plus1'}
+                    onClick={handleAddResult}/>
+
             </div>
             <div className="body">
-                {tabs.map((tab: TabType) => (
+                {list.map((tab: TabType) => (
                     <div className="tab-item" key={tab.id}>
-                        <div className={classnames('item-delete icon icon-x', {'disabled': tabSet.isLocked})}
-                            onClick={() => null}>
+                        <div className={'item-delete icon icon-x'}
+                            onClick={() => handleRemoveTab(tab.id)}>
                         </div>
                         <img src={tab.favIconUrl} alt={' '}/>
                         <div className="item-title">
@@ -35,7 +52,7 @@ export default function SearchResult({tabs = []}) {
                     </div>
                 ))}
 
-                {tabs.length === 0 && (
+                {list.length === 0 && (
                     <div className={'not-found'}>
                         No data matched!
                     </div>
