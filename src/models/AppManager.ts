@@ -100,13 +100,23 @@ class AppManager {
     searchTabs(text: string): Array<TabType> {
         let allTabs = [];
 
+        // merge all tabs
         Object.values(this.appData).forEach((tabset) => {
             allTabs = [...allTabs, ...tabset.tabs];
         });
 
-        return allTabs.filter((tab: TabType) => {
+        // match by title OR url
+        allTabs = allTabs.filter((tab: TabType) => {
             return tab.url.includes(text) || tab.title.includes(text);
         });
+
+        // remove duplicates
+        const noDuplicates = {};
+        allTabs.forEach((tab: TabType) => {
+            noDuplicates[tab.url] = tab;
+        });
+
+        return Object.values(noDuplicates);
     }
 }
 
