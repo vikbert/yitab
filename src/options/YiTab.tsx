@@ -3,10 +3,10 @@ import useDocumentTitle from '../hooks/useDocumentTitle';
 import AppManager from '../models/AppManager';
 import TabSetType from '../models/TabSetType';
 import {loadAppManager} from '../storage/tabStore';
-import './options.less';
+import './yitab.less';
 import TabSet from './TabSet';
 
-const Options = () => {
+const YiTab = () => {
     useDocumentTitle('Yi Tab');
     const [appManager, setAppManager] = useState(new AppManager({}));
     const [counter, setCounter] = useState(0);
@@ -51,4 +51,4 @@ const Options = () => {
     );
 };
 
-export default Options;
+export default YiTab;

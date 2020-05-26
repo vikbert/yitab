@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Options from './Options';
+import YiTab from './YiTab';
 
 chrome.tabs.query({active: true, currentWindow: true}, (tab) => {
-    ReactDOM.render(<Options/>, document.getElementById('app-container'));
+    ReactDOM.render(<YiTab/>, document.getElementById('app-container'));
 });
