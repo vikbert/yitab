@@ -86,8 +86,7 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                     </div>
                 ))}
             </div>
-            <div className="meta">
-            </div>
+            <div className="meta"/>
         </div>
     );
 };

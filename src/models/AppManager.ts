@@ -96,6 +96,18 @@ class AppManager {
 
         return mySet;
     }
+
+    searchTabs(text: string): Array<TabType> {
+        let allTabs = [];
+
+        Object.values(this.appData).forEach((tabset) => {
+            allTabs = [...allTabs, ...tabset.tabs];
+        });
+
+        return allTabs.filter((tab: TabType) => {
+            return tab.url.includes(text) || tab.title.includes(text);
+        });
+    }
 }
 
 export default AppManager;

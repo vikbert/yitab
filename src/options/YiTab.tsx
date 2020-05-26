@@ -12,29 +12,16 @@ const YiTab = () => {
     useDocumentTitle('Yi Tab');
     const [appManager, setAppManager] = useState(new AppManager({}));
     const [counter, setCounter] = useState(0);
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState(null);
 
-    const changeCallback = (text: string): void => {
-        if (text.trim().length === 0) {
-            setSearchResult([]);
+    const changeCallback = (searchInput: string): void => {
+        if (searchInput.trim().length === 0) {
+            setSearchResult(null);
 
             return;
         }
 
-        setSearchResult([
-            {
-                'id': 738,
-                'favIconUrl': 'https://www.google.de/favicon.ico',
-                'title': 'Google',
-                'url': 'https://www.google.de/',
-                'status': 'completed',
-                'pinned': false,
-            },
-        ]);
-    };
-
-    const submitCallback = (text: string): void => {
-        console.log('trigger submit');
+        setSearchResult(appManager.searchTabs(searchInput));
     };
 
     useEffect(() => {
@@ -61,7 +48,7 @@ const YiTab = () => {
                 </header>
                 <section className="content">
                     <main>
-                        {!appManager.isEmpty() && searchResult.length === 0
+                        {!appManager.isEmpty() && searchResult === null
                             ? (
                                 <>
                                     {Object.values(appManager.appData).reverse().map((tabSet) => (

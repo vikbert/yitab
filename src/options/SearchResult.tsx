@@ -1,5 +1,5 @@
-import React from 'react';
 import classnames from 'classnames';
+import React from 'react';
 import TabType from '../models/TabType';
 
 export default function SearchResult({tabs = []}) {
@@ -8,35 +8,19 @@ export default function SearchResult({tabs = []}) {
         isLocked: false,
     };
 
-    const handleRecall = () => {
-
-    };
-
-    const handleDeleteAll = () => {
-
-    };
-
-    const handleToggleIsLocked = () => {
-
-    };
-
-    const handleToggleIsStarred = () => {
-
-    };
-
-    return (
+    return tabs && (
         <div className="tab-set">
             <div className="header">
                 <div></div>
                 <div className="counter">Found {tabs.length} Tabs</div>
                 <div className="action icon icon-rotate-ccw"
-                    onClick={handleRecall}/>
+                    onClick={() => null}/>
                 <div className={classnames('action icon icon-x', {'disabled': (tabSet.isStarred || tabSet.isStarred)})}
-                    onClick={handleDeleteAll}/>
+                    onClick={() => null}/>
                 <div className={classnames('action icon icon-bookmark', {'selected': tabSet.isStarred})}
-                    onClick={handleToggleIsStarred}/>
+                    onClick={() => null}/>
                 <div className={classnames('action icon icon-lock', {'selected': tabSet.isLocked})}
-                    onClick={handleToggleIsLocked}/>
+                    onClick={() => null}/>
             </div>
             <div className="body">
                 {tabs.map((tab: TabType) => (
@@ -50,9 +34,14 @@ export default function SearchResult({tabs = []}) {
                         </div>
                     </div>
                 ))}
+
+                {tabs.length === 0 && (
+                    <div className={'not-found'}>
+                        No data matched!
+                    </div>
+                )}
             </div>
-            <div className="meta">
-            </div>
+            <div className="meta"/>
         </div>
     );
 }
