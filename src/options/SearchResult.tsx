@@ -1,20 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import {createNewTabSet} from '../models/TabSetFactory';
 import TabType from '../models/TabType';
-import {loadAppManager} from '../storage/tabStore';
-import {openTabs, reloadCurrentTab} from '../utils/chromeTabsHelper';
+import {loadAppManager, saveAppManager} from '../storage/tabStore';
+import ChromeApiHelper from "../utils/ChromeApiHelper";
 
 export default function SearchResult({tabs}) {
     const [list, setList] = useState([]);
 
-    const handleAddResult = () => {
+    const handleSaveResult = () => {
         const newTabset = createNewTabSet(list);
         const appManager = loadAppManager();
         appManager.insertTabSet(newTabset);
+        saveAppManager(appManager);
+        ChromeApiHelper.reloadCurrentTab();
     };
 
     const handleOpenResult = () => {
-        openTabs(list);
+        ChromeApiHelper.openTabs(list);
     };
 
     const handleRemoveTab = (targetId: number) => {
@@ -22,12 +24,12 @@ export default function SearchResult({tabs}) {
         setList(filtered);
 
         if (filtered.length === 0) {
-            reloadCurrentTab();
+            ChromeApiHelper.reloadCurrentTab();
         }
     };
 
     const handleCancelSearch = () => {
-        reloadCurrentTab();
+        ChromeApiHelper.reloadCurrentTab();
     };
 
     useEffect(() => {
@@ -43,7 +45,7 @@ export default function SearchResult({tabs}) {
                     onClick={handleOpenResult}/>
                 <div
                     className={'action icon icon-plus1'}
-                    onClick={handleAddResult}/>
+                    onClick={handleSaveResult}/>
 
             </div>
             <div className="body">

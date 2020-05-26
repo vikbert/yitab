@@ -33,15 +33,3 @@ export const filterTabs = (tabs): FilteredResult => {
 
     return {yiTabId, tabsToClose, tabsToSave};
 };
-
-export const openTabs = (tabs: Array<TabType>): void => {
-    tabs.forEach((tab: TabType) => {
-        chrome.tabs.create({url: tab.url});
-    });
-};
-
-export const reloadCurrentTab = () => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
-    });
-};

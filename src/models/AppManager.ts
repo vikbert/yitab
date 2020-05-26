@@ -1,3 +1,4 @@
+import {saveAppManager} from '../storage/tabStore';
 import AppDataType from './AppDataType';
 import TabSetType from './TabSetType';
 import TabType from './TabType';
