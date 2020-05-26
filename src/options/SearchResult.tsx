@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import classnames from 'classnames';
 import {createNewTabSet} from '../models/TabSetFactory';
 import TabType from '../models/TabType';
 import {loadAppManager, saveAppManager} from '../storage/tabStore';
@@ -41,10 +42,10 @@ export default function SearchResult({tabs}) {
             <div className="header">
                 <div></div>
                 <div className="counter">Found {list.length} Tabs</div>
-                <div className="action icon icon-rotate-ccw"
+                <div className= {classnames('action icon icon-rotate-ccw', {'disabled': tabs && tabs.length === 0})}
                     onClick={handleOpenResult}/>
                 <div
-                    className={'action icon icon-plus1'}
+                    className={classnames('action icon icon-plus1', {'disabled': tabs && tabs.length === 0})}
                     onClick={handleSaveResult}/>
 
             </div>

@@ -1,17 +1,15 @@
-import React, {useEffect, useState, Fragment} from 'react';
-import './yitab.less';
+import React, {useEffect, useState} from 'react';
+import Search from '../components/Search';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import AppManager from '../models/AppManager';
-import TabSetType from '../models/TabSetType';
 import {loadAppManager} from '../storage/tabStore';
-import TabSet from './TabSet';
-import Search from '../components/Search';
 import SearchResult from './SearchResult';
+import TabSet from './TabSet';
+import './yitab.less';
 
 const YiTab = () => {
-    useDocumentTitle('Yi Tab');
+    useDocumentTitle('Yi');
     const [appManager, setAppManager] = useState(new AppManager({}));
-    const [counter, setCounter] = useState(0);
     const [searchResult, setSearchResult] = useState(null);
 
     const changeCallback = (searchInput: string): void => {
@@ -26,7 +24,6 @@ const YiTab = () => {
 
     useEffect(() => {
         setAppManager(loadAppManager());
-        setCounter(appManager.count());
     }, []);
 
     return appManager && (
@@ -34,16 +31,16 @@ const YiTab = () => {
             <div className="bg"/>
             <div className="wrapper">
                 <header className="header">
-                    <div className='header-left'>
-                        <div className='logo'/>
+                    <div className="header-left">
+                        <div className="logo"/>
                         <div className="info">I</div>
                     </div>
-                    <div className='header-right'>
+                    <div className="header-right">
                         <Search
-                            placeholder='Search here'
-                            changeCallback= {changeCallback}
+                            placeholder="Search here"
+                            changeCallback={changeCallback}
                         />
-                        <span className="icon icon-settings"></span>
+                        <span className="icon icon-settings"/>
                     </div>
                 </header>
                 <section className="content">

@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import useEscapeCallback from '../../hooks/useEscapeCallback';
+import ChromeApiHelper from '../../utils/ChromeApiHelper';
 import './search.less';
 
 export default function Search({
@@ -7,6 +9,10 @@ export default function Search({
     submitCallback = (text: string) => null,
 }) {
     const [searchText, setSearchText] = useState('');
+    useEscapeCallback(() => {
+        setSearchText('');
+        ChromeApiHelper.reloadCurrentTab();
+    });
 
     const handleChangeSearch = (event) => {
         const searchString = event.target.value.toLowerCase();
@@ -31,7 +37,7 @@ export default function Search({
                 onChange={handleChangeSearch}
                 onKeyPress={handleKeyPress}
             />
-            <span className="icon-search1" />
+            <span className="icon-search1"/>
         </div>
     );
 }

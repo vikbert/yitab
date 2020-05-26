@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "yitab",
-  "description": "yitab",
+  "name": "Yi Tab",
+  "description": "The webkit browser tab tool for saving resource and saving time.",
   "version": "1.0.0",
   "browser_action": {
     "default_icon": "logo.png"

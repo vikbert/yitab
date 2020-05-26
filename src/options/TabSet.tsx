@@ -1,10 +1,11 @@
+import classnames from 'classnames';
 import React, {useEffect} from 'react';
+import Input from '../components/Input';
 import useUpdates from '../hooks/useUpdates';
 import AppManager from '../models/AppManager';
 import TabType from '../models/TabType';
 import {saveAppManager} from '../storage/tabStore';
 import './tabSet.less';
-import classnames from 'classnames';
 
 type TabSetProps = {
     appManager: AppManager;
@@ -14,7 +15,7 @@ type TabSetProps = {
 const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
     const tabSet = appManager.getTabSet(tabSetKey);
     const tabs = tabSet ? tabSet.tabs : [];
-    const date = tabSet ? new Date(tabSet.createdAt) : new Date();
+    const initTitle = tabSet && tabSet.title ? tabSet.title : (tabs.length + ' Tabs');
 
     const {updates, refreshUpdates} = useUpdates();
 
@@ -51,6 +52,11 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
         refreshUpdates();
     };
 
+    const updateTitleCallback = (newTitle) => {
+        appManager.changeTabSetTitle(tabSetKey, newTitle);
+        refreshUpdates();
+    };
+
     useEffect(() => {
         saveAppManager(appManager);
     }, [updates]);
@@ -62,8 +68,10 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
     return (
         <div className="tab-set">
             <div className="header">
-                <div></div>
-                <div className="counter">{tabs.length} Tabs</div>
+                <div/>
+                <div className="counter">
+                    <Input initValue={initTitle} placeHolder={''} updateCallback={updateTitleCallback}/>
+                </div>
                 <div className="action icon icon-rotate-ccw"
                     onClick={handleRecall}/>
                 <div className={classnames('action icon icon-x', {'disabled': (tabSet.isStarred || tabSet.isStarred)})}
