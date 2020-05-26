@@ -1,11 +1,5 @@
 import TabType from '../models/TabType';
 
-interface ChromeApi {
-    openTabs(tabs: Array<TabType>): void;
-
-    reloadCurrentTab(): void;
-}
-
 const ChromeApiHelper = {
     openTabs(tabs: Array<TabType>): void {
         tabs.forEach((tab: TabType) => {

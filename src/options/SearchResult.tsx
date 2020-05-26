@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {createNewTabSet} from '../models/TabSetFactory';
 import TabType from '../models/TabType';
 import {loadAppManager, saveAppManager} from '../storage/tabStore';
-import ChromeApiHelper from "../utils/ChromeApiHelper";
+import ChromeApiHelper from '../utils/ChromeApiHelper';
 
 export default function SearchResult({tabs}) {
     const [list, setList] = useState([]);
