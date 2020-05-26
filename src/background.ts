@@ -1,3 +1,4 @@
+import {createNewTabSet} from "./models/TabSetFactory";
 import TabType from './models/TabType';
 import {loadAppManager, saveAppManager} from './storage/tabStore';
 import {filterTabs} from './utils/chromeTabsHelper';
@@ -27,12 +28,7 @@ chrome.browserAction.onClicked.addListener(() => {
 
         if (tabsToSave.length > 0) {
             const appManager = loadAppManager();
-            appManager.insertTabSet({
-                createdAt: (new Date()).getTime(),
-                isStarred: false,
-                isLocked: false,
-                tabs: tabsToSave,
-            });
+            appManager.insertTabSet(createNewTabSet(tabsToSave));
             saveAppManager(appManager);
         }
     });
