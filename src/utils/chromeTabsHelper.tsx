@@ -8,8 +8,7 @@ type FilteredResult = {
 
 export const filterTabs = (tabs): FilteredResult => {
     const tabsToClose = [];
-    let tabsToSave = [];
-    let yiTabId: number;
+    let yiTabId = 0;
 
     tabs.forEach((item) => {
         if (item.url.includes('yitab.html') && !yiTabId) {
@@ -26,7 +25,7 @@ export const filterTabs = (tabs): FilteredResult => {
         }
     });
 
-    tabsToSave = tabsToClose.filter((tab: TabType) => {
+    const tabsToSave = tabsToClose.filter((tab: TabType) => {
         return !tab.url.includes('chrome-extension') &&
             !tab.url.includes('brave://') &&
             !tab.url.includes('chrome://');
