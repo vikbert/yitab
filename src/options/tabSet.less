@@ -79,13 +79,6 @@
     a:-webkit-any-link {
       text-decoration: none;
     }
-    .not-found {
-      margin: 0 auto;
-      padding-top: 8px;
-      text-align: center;
-      font-size: 18px;
-      color: #a09c98;
-    }
   }
   .meta {
     height: 100%;
@@ -98,5 +91,18 @@
       color: #0000008c;
       font-size: 20px;
     }
+  }
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  button {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 4px;
+    outline: none;
   }
 }

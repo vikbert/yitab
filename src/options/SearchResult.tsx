@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {createNewTabSet} from '../models/TabSetFactory';
 import TabType from '../models/TabType';
+import {loadAppManager} from '../storage/tabStore';
 import {openTabs, reloadCurrentTab} from '../utils/chromeTabsHelper';
 
 export default function SearchResult({tabs}) {
@@ -8,6 +9,8 @@ export default function SearchResult({tabs}) {
 
     const handleAddResult = () => {
         const newTabset = createNewTabSet(list);
+        const appManager = loadAppManager();
+        appManager.insertTabSet(newTabset);
     };
 
     const handleOpenResult = () => {
@@ -21,6 +24,10 @@ export default function SearchResult({tabs}) {
         if (filtered.length === 0) {
             reloadCurrentTab();
         }
+    };
+
+    const handleCancelSearch = () => {
+        reloadCurrentTab();
     };
 
     useEffect(() => {
@@ -54,11 +61,12 @@ export default function SearchResult({tabs}) {
 
                 {list.length === 0 && (
                     <div className={'not-found'}>
-                        No data matched!
+                        <div>- No data found -</div>
+                        <button onClick={handleCancelSearch}>Cancel search</button>
                     </div>
+
                 )}
             </div>
-            <div className="meta"/>
         </div>
     );
 }
