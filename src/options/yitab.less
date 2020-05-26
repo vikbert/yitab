@@ -36,35 +36,41 @@ header {
   box-shadow: 1px 11px 15px -8px rgba(43,43,40,1);
   color: #ffffff;
   display: grid;
-  grid-template-columns: 60px 1fr 44px;
-  align-items: center;
+  grid-template-columns: 60px 75%;
+  justify-content: space-between;
   text-align: right;
+  .header-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
-  .logo {
+  .header-left {
     display: flex;
     padding-left: 15px;
-  }
-  .header-logo {
-    display: inline-block;
-    width: 31px;
-    height: 40px;
-    background: url("../../dist/logo.png") no-repeat;
-    filter: invert(1);
-    background-size: 39px 28px;
-    background-position: center;
-  }
-  
-  .header-info {
-    color: #ffffffcc;
-    margin-left: -8px;
-    font-size: 1.2rem;
-    line-height: 50px;
-    font-weight: 700;
+    .logo {
+      display: inline-block;
+      width: 31px;
+      height: 40px;
+      background: url("../../dist/logo.png") no-repeat;
+      filter: invert(1);
+      background-size: 39px 28px;
+      background-position: center;
+    }
+    
+    .info {
+      color: #ffffffcc;
+      margin-left: -8px;
+      font-size: 1.2rem;
+      line-height: 50px;
+      font-weight: 700;
+    }
   }
   .icon {
-    font-size: 18px;
-    padding: 10px;
+    font-size: 20px;
+    padding: 0px 10px 3px 10px;
     cursor: pointer;
+
     &:hover {
       color: darkgrey;
     }

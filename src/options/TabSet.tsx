@@ -4,7 +4,6 @@ import AppManager from '../models/AppManager';
 import TabType from '../models/TabType';
 import {saveAppManager} from '../storage/tabStore';
 import './tabSet.less';
-import Calender from './calender';
 import classnames from 'classnames';
 
 type TabSetProps = {
