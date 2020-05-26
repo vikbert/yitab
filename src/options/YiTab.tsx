@@ -64,7 +64,7 @@ const YiTab = () => {
                         {!appManager.isEmpty() && searchResult.length === 0
                             ? (
                                 <>
-                                    {Object.values(appManager.appData).map((tabSet: TabSetType) => (
+                                    {Object.values(appManager.appData).reverse().map((tabSet) => (
                                         <TabSet
                                             appManager={appManager}
                                             tabSetKey={tabSet.createdAt.toString()}
