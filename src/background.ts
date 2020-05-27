@@ -1,4 +1,4 @@
-import {createNewTabSet} from "./models/TabSetFactory";
+import {createNewTabSet} from './models/TabSetFactory';
 import TabType from './models/TabType';
 import {loadAppManager, saveAppManager} from './storage/tabStore';
 import {filterTabs} from './utils/chromeTabsHelper';
