@@ -7,8 +7,8 @@
     "default_icon": "logo.png"
   },
   "icons": {
-    "16": "logo.png",
-    "48": "logo.png",
+    "16": "logo-fav.png",
+    "48": "logo-fav.png",
     "128": "logo.png"
   },
   "background": {
