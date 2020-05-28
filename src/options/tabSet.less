@@ -28,6 +28,7 @@
       font-size: 1.5rem;
     }
     .icon {
+      position: relative;
       padding-right: 15px;
       cursor: pointer;
       font-size: 20px;
@@ -36,6 +37,26 @@
       &:hover {
         color: darkorange;
       }
+    }
+    .icon .tooltip {
+      transition: 0s visibility;
+      visibility: hidden;
+      background-color: #0000007a;
+      color: #fff;
+      text-align: center;
+      border-radius: 3px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+    
+      /* Positiontooltip */
+      position: absolute;
+      top: 35px;
+      z-index: 1;
+    }
+    .icon:hover .tooltip{
+      transition-delay:1s;
+      visibility: visible;
     }
     .icon.selected {
       color: darkorange;

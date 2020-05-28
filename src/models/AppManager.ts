@@ -1,4 +1,3 @@
-import {saveAppManager} from '../storage/tabStore';
 import AppDataType from './AppDataType';
 import TabSetType from './TabSetType';
 import TabType from './TabType';
@@ -108,7 +107,7 @@ class AppManager {
 
         // match by title OR url
         allTabs = allTabs.filter((tab: TabType) => {
-            return tab.url.includes(text) || tab.title.includes(text);
+            return tab.url.toLowerCase().includes(text.toLowerCase()) || tab.title.toLowerCase().includes(text.toLowerCase());
         });
 
         // remove duplicates

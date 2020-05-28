@@ -58,7 +58,9 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
     };
 
     useEffect(() => {
-        saveAppManager(appManager);
+        if (updates) {
+            saveAppManager(appManager);
+        }
     }, [updates]);
 
     if (!tabSet) {
@@ -73,13 +75,21 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                     <Input initValue={initTitle} placeHolder={''} updateCallback={updateTitleCallback}/>
                 </div>
                 <div className="action icon icon-rotate-ccw"
-                    onClick={handleRecall}/>
+                    onClick={handleRecall}>
+                    <div className='tooltip'>alle wiederherstellen</div>
+                </div>
                 <div className={classnames('action icon icon-x', {'disabled': (tabSet.isStarred || tabSet.isStarred)})}
-                    onClick={handleDeleteAll}/>
+                    onClick={handleDeleteAll}>
+                    <span className='tooltip'>alle löschen</span>
+                </div>
                 <div className={classnames('action icon icon-bookmark', {'selected': tabSet.isStarred})}
-                    onClick={handleToggleIsStarred}/>
+                    onClick={handleToggleIsStarred}>
+                    <div className='tooltip'>{tabSet.isStarred ? 'Markierung aufheben' : 'alle markieren'}</div>
+                </div>
                 <div className={classnames('action icon icon-lock', {'selected': tabSet.isLocked})}
-                    onClick={handleToggleIsLocked}/>
+                    onClick={handleToggleIsLocked}>
+                    <div className='tooltip'>{tabSet.isLocked ? 'alle entsperren' : 'alle sperren'}</div>
+                </div>
             </div>
             <div className="body">
                 {tabs.map((tab: TabType) => (

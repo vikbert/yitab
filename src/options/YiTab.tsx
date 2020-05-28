@@ -33,7 +33,6 @@ const YiTab = () => {
                 <header className="header">
                     <div className="header-left">
                         <div className="logo"/>
-                        <div className="info">I</div>
                     </div>
                     <div className="header-right">
                         <Search

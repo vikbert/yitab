@@ -11,7 +11,9 @@ chrome.runtime.onMessage.addListener((request) => {
     // handle reload event
     if (request.reload) {
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-            chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+            if (tabs.length > 0) {
+                chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+            }
         });
     }
 
@@ -23,8 +25,18 @@ chrome.browserAction.onClicked.addListener(() => {
         chrome.runtime.openOptionsPage();
 
         const {yiTabId, tabsToClose, tabsToSave} = filterTabs(tabs);
+
+        if (tabsToClose.length === tabs.length) {
+            chrome.windows.create(() => {
+                chrome.runtime.openOptionsPage();
+            });
+        }
+
         chrome.tabs.remove(tabsToClose.map((item: TabType) => item.id));
-        chrome.tabs.reload(yiTabId);
+
+        if (yiTabId) {
+            chrome.tabs.reload(yiTabId);
+        }
 
         if (tabsToSave.length > 0) {
             const appManager = loadAppManager();

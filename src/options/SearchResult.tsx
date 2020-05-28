@@ -45,7 +45,7 @@ export default function SearchResult({tabs}) {
                 <div className= {classnames('action icon icon-rotate-ccw', {'disabled': tabs && tabs.length === 0})}
                     onClick={handleOpenResult}/>
                 <div
-                    className={classnames('action icon icon-plus1', {'disabled': tabs && tabs.length === 0})}
+                    className={classnames('action icon icon-plus-circle', {'disabled': tabs && tabs.length === 0})}
                     onClick={handleSaveResult}/>
 
             </div>

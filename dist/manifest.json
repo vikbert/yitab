@@ -7,12 +7,12 @@
     "default_icon": "logo.png"
   },
   "icons": {
-    "16": "logo-fav.png",
-    "48": "logo-fav.png",
+    "16": "logo.png",
+    "48": "logo.png",
     "128": "logo.png"
   },
   "background": {
-    "scripts": ["js/background.js"],
+    "scripts": ["background.js"],
     "persistent": false
   },
   "options_page": "yitab.html",
