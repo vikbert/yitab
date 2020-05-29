@@ -6,6 +6,7 @@ import {loadAppManager} from '../storage/tabStore';
 import SearchResult from './SearchResult';
 import TabSet from './TabSet';
 import './yitab.less';
+import Clock from '../components/Clock';
 
 const YiTab = () => {
     useDocumentTitle('Yi');
@@ -63,6 +64,11 @@ const YiTab = () => {
                             )
                         }
                     </main>
+                    <aside className='aside-container'>
+                        <div className="clock-container">
+                            <Clock/>
+                        </div>
+                    </aside>
                 </section>
             </div>
         </>

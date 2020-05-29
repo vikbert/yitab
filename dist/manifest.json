@@ -12,7 +12,7 @@
     "128": "logo.png"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["hot-reload.js", "background.js"],
     "persistent": false
   },
   "options_page": "yitab.html",

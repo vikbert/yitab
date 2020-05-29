@@ -78,6 +78,11 @@
       grid-template-columns: 35px 25px 1fr;
       align-items: center;
       line-height: 26px;
+      cursor: pointer;
+      .item-title {
+        overflow: hidden;
+        white-space: nowrap;
+      }
       .item-delete {
         font-size: 15px;
         padding: 5px;
@@ -89,7 +94,6 @@
       .item-delete.disabled {
         cursor: not-allowed;
       }
-      cursor: pointer;
       img{
         width: 16px;
         height: 16px;
