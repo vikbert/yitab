@@ -4,5 +4,6 @@
 - add package: `react-test-renderer`
 - add package: `@testing-library/react`
 - add package: `@testing-library/react-hooks`
-- add component: `Dialog`
 - jest config: use option `--maxWorkers=4`
+- add component: `Dialog`
+- add component: `new tab form`
