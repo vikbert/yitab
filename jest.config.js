@@ -1,8 +1,10 @@
+// eslint-disable-next-line no-undef
 module.exports = {
-    roots: ['<rootDir>/src'],
-    transform: {
+    'testEnvironment': 'node',
+    'roots': ['<rootDir>/src'],
+    'transform': {
         '^.+\\.tsx?$': 'ts-jest',
     },
-    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+    'testRegex': '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
+    'moduleFileExtensions': ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };

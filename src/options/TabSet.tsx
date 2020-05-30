@@ -10,14 +10,19 @@ import './tabSet.less';
 type TabSetProps = {
     appManager: AppManager;
     tabSetKey: string;
+    openNewTabFormCallback: (tabsetKey: string) => void;
 }
 
-const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
+const TabSet = ({appManager, tabSetKey, openNewTabFormCallback}: TabSetProps) => {
     const tabSet = appManager.getTabSet(tabSetKey);
     const tabs = tabSet ? tabSet.tabs : [];
     const initTitle = tabSet && tabSet.title ? tabSet.title : (tabs.length + ' Tabs');
 
     const {updates, refreshUpdates} = useUpdates();
+
+    const handleClickPlusIcon = () => {
+        openNewTabFormCallback(tabSetKey);
+    };
 
     const handleDeleteTab = (tabId: number): void => {
         if (tabSet.isLocked) {
@@ -104,7 +109,9 @@ const TabSet = ({appManager, tabSetKey}: TabSetProps) => {
                     </div>
                 ))}
             </div>
-            <div className="meta"/>
+            <div className="meta">
+                <span className="icon icon-plus1" onClick={handleClickPlusIcon}/>
+            </div>
         </div>
     );
 };

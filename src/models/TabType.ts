@@ -1,6 +1,6 @@
 interface TabType {
-    id: number;
-    favIconUrl: string;
+    id?: number;
+    favIconUrl?: string;
     title: string;
     url: string;
     status: string;

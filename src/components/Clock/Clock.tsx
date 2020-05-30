@@ -2,11 +2,14 @@ import React from 'react';
 import './clock.less';
 
 const today = new Date();
-
-const Clock = () => (
+interface ClockProps {
+    time: string;
+    date: string;
+}
+const Clock = ({time, date}: ClockProps) => (
     <div className={'clock'}>
-        <div className={'time'}>{today.toLocaleTimeString().substr(0, 5)}</div>
-        <div className={'date'}>{today.toUTCString().substr(0, 16)}</div>
+        <div className={'time'}>{time}</div>
+        <div className={'date'}>{date}</div>
     </div>
 );
 

@@ -1,7 +1,14 @@
 import React from 'react';
+import './dialog.less';
 
-const Dialog = ({visible, hide, footer = null, children}) => {
+interface DialogProps {
+    visible: boolean;
+    hide: () => void;
+    children?: JSX.Element;
+    footer?: JSX.Element;
+}
 
+const Dialog = ({visible, hide, children, footer = null}: DialogProps) => {
     return visible && (
         <div className="dialog-wrapper">
             <div className="dialog">
