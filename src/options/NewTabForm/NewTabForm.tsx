@@ -42,7 +42,7 @@ export default function NewTabForm({tabsetId, addNewTabCallback}: NewTabFormProp
             </div>
             <input type="text" value={title} placeholder='Enter Title' onChange={(e) => setTitle(e.target.value)}/>
             <input type="text" value={url} placeholder='Enter URL' onChange={(e) => setUrl(e.target.value)}/>
-            <button type='submit' className='btn'>Submit</button>
+            <input type='submit' className='submit' value='Submit' disabled={title.length === 0 || url.length === 0}/>
         </form>
     );
 }

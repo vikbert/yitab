@@ -1,5 +1,5 @@
 .tab-set {
-  margin: 0 0 10px;
+  margin: 0 0 40px;
   background-color: #fffefee6;
   border-radius: 5px;
   min-width: 600px;
@@ -10,9 +10,6 @@
   grid-template-areas: 
     "header header"
     "body   meta";
-  a {
-    color: #0e0e0ebd;
-  }
   .header {
     grid-area: header;
     display: grid;
@@ -78,7 +75,7 @@
       grid-template-columns: 35px 25px 1fr;
       align-items: center;
       line-height: 26px;
-      cursor: pointer;
+
       .item-title {
         overflow: hidden;
         white-space: nowrap;
@@ -87,6 +84,7 @@
         font-size: 15px;
         padding: 5px;
         color: #9c9a9aa8;
+        cursor: pointer;
         &:hover {
           color: red;
         }
@@ -99,9 +97,13 @@
         height: 16px;
       }
     }
-    
-    a:-webkit-any-link {
+    a {
+      color: #0e0e0ebd;
       text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        color: #000000;
+      }
     }
   }
   .meta {
@@ -112,7 +114,7 @@
     align-items: center;
 
     .icon {
-      color: #00000026;
+      color: #9a96964a;
       font-size: 50px;
       cursor: pointer;;
       &:hover {
