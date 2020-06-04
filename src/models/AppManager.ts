@@ -28,7 +28,9 @@ class AppManager {
             return 0;
         }
 
-        const countEachSet = Object.values(this._appData).map((tabSet: TabSetType) => tabSet.tabs && tabSet.tabs.length);
+        const countEachSet = Object.values(this._appData).map(
+            (tabSet: TabSetType) => tabSet.tabs && tabSet.tabs.length
+        );
 
         return countEachSet.reduce((sum, x) => sum + x, 0);
     }
@@ -53,7 +55,9 @@ class AppManager {
 
     deleteTab(tabSetKey: string, tabId: number): void {
         const tabset = this.getTabSet(tabSetKey);
-        const filteredTabs = tabset.tabs.filter((tab: TabType) => tab.id !== tabId);
+        const filteredTabs = tabset.tabs.filter(
+            (tab: TabType) => tab.id !== tabId
+        );
 
         if (filteredTabs.length === 0) {
             this.deleteTabSet(tabSetKey);
@@ -107,7 +111,10 @@ class AppManager {
 
         // match by title OR url
         allTabs = allTabs.filter((tab: TabType) => {
-            return tab.url.toLowerCase().includes(text.toLowerCase()) || tab.title.toLowerCase().includes(text.toLowerCase());
+            return (
+                tab.url.toLowerCase().includes(text.toLowerCase()) ||
+                tab.title.toLowerCase().includes(text.toLowerCase())
+            );
         });
 
         // remove duplicates

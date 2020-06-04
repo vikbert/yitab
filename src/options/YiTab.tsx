@@ -5,12 +5,12 @@ import AppManager from '../models/AppManager';
 import {loadAppManager, saveAppManager} from '../storage/tabStore';
 import SearchResult from './SearchResult';
 import TabSet from './TabSet';
-import './yitab.less';
 import Clock from '../components/Clock';
 import Dialog from '../components/Dialog';
 import useVisibility from '../hooks/useVisibility';
 import NewTabForm from './NewTabForm';
 import TabType from '../models/TabType';
+import './yitab.less';
 import '../styles/animation.less';
 
 const today = new Date();

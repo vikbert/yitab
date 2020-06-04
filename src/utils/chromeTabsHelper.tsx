@@ -4,7 +4,7 @@ type FilteredResult = {
     yiTabId: number;
     tabsToClose: Array<TabType>;
     tabsToSave: Array<TabType>;
-}
+};
 
 export const filterTabs = (tabs): FilteredResult => {
     const tabsToClose = [];
@@ -31,9 +31,11 @@ export const filterTabs = (tabs): FilteredResult => {
     });
 
     tabsToSave = tabsToClose.filter((tab: TabType) => {
-        return !tab.url.includes('chrome-extension') &&
+        return (
+            !tab.url.includes('chrome-extension') &&
             !tab.url.includes('brave://') &&
-            !tab.url.includes('chrome://');
+            !tab.url.includes('chrome://')
+        );
     });
 
     return {yiTabId, tabsToClose, tabsToSave};

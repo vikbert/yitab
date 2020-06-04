@@ -1,9 +1,7 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -22,20 +20,14 @@
     "rules": {
         "array-bracket-spacing": "error",
         "array-callback-return": "error",
-        "array-element-newline": [
-            "error",
-            "consistent"
-        ],
+        "array-element-newline": ["error", "consistent"],
         "arrow-parens": "error",
         "arrow-spacing": "error",
         "block-spacing": "error",
         "block-scoped-var": "error",
         "brace-style": "error",
         "class-methods-use-this": "error",
-        "comma-dangle": [
-            "error",
-            "always-multiline"
-        ],
+        "comma-dangle": ["error", "always-multiline"],
         "comma-spacing": "error",
         "comma-style": "error",
         "complexity": [
@@ -45,25 +37,13 @@
             }
         ],
         "computed-property-spacing": "error",
-        "consistent-this": [
-            "error",
-            "self"
-        ],
+        "consistent-this": ["error", "self"],
         "curly": "error",
         "eol-last": "error",
         "eqeqeq": "error",
-        "func-call-spacing": [
-            "error",
-            "never"
-        ],
-        "func-names": [
-            "error",
-            "never"
-        ],
-        "function-paren-newline": [
-            "error",
-            "consistent"
-        ],
+        "func-call-spacing": ["error", "never"],
+        "func-names": ["error", "never"],
+        "function-paren-newline": ["error", "consistent"],
         "func-style": "error",
         "generator-star-spacing": "error",
         //        "import/no-unresolved": "error",
@@ -80,10 +60,7 @@
         "linebreak-style": "error",
         "lines-between-class-members": "error",
         "max-statements-per-line": "error",
-        "multiline-ternary": [
-            "error",
-            "always-multiline"
-        ],
+        "multiline-ternary": ["error", "always-multiline"],
         "new-cap": [
             "error",
             {
@@ -180,10 +157,7 @@
         ],
         "one-var-declaration-per-line": "error",
         "operator-linebreak": "error",
-        "padded-blocks": [
-            "error",
-            "never"
-        ],
+        "padded-blocks": ["error", "never"],
         "padding-line-between-statements": [
             "error",
             {
@@ -226,14 +200,8 @@
         // "prefer-rest-params": "error",
         "prefer-spread": "error",
         // "prefer-template": "error",
-        "quote-props": [
-            "error",
-            "consistent"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
+        "quote-props": ["error", "consistent"],
+        "quotes": ["error", "single"],
         "radix": "error",
         "react/display-name": "off",
         // Checks effect dependencies
@@ -243,10 +211,7 @@
         "semi-spacing": "error",
         "semi-style": "error",
         "space-before-blocks": "error",
-        "space-before-function-paren": [
-            "error",
-            "never"
-        ],
+        "space-before-function-paren": ["off", "never"],
         "space-in-parens": "error",
         "space-infix-ops": "error",
         "space-unary-ops": "error",
@@ -260,11 +225,7 @@
         "yield-star-spacing": "error",
         "yoda": "error",
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "off"
-        ],
-        "@typescript-eslint/explicit-function-return-type": [
-            "off"
-        ]
+        "@typescript-eslint/no-unused-vars": ["off"],
+        "@typescript-eslint/explicit-function-return-type": ["off"]
     }
 }
