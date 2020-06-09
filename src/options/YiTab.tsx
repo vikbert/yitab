@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {RecoilRoot, atom} from 'recoil';
 import Search from '../components/Search';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import AppManager from '../models/AppManager';
@@ -10,9 +11,16 @@ import Dialog from '../components/Dialog';
 import useVisibility from '../hooks/useVisibility';
 import NewTabForm from './NewTabForm';
 import TabType from '../models/TabType';
-import './yitab.less';
-import '../styles/animation.less';
 import TabSetType from '../models/TabSetType';
+import Menu from '../components/Menu';
+import Sidebar from '../components/Sidebar';
+import '../styles/animation.less';
+import './yitab.less';
+
+export const menuVisibility = atom({
+  key: 'menu-visiblity',
+  default: false,
+});
 
 const today = new Date();
 
@@ -64,15 +72,13 @@ const YiTab = () => {
     );
   };
 
-  const handleOpenSettings = () => {};
-
   useEffect(() => {
     setAppManager(loadAppManager());
   }, []);
 
   return (
     appManager && (
-      <>
+      <RecoilRoot>
         <div className="bg" />
         <Dialog visible={visible} hide={hide}>
           <NewTabForm tabsetId={tabsetId} addNewTabCallback={addNewTabCallback} />
@@ -80,14 +86,15 @@ const YiTab = () => {
         <div className="wrapper">
           <header className="header">
             <div className="header-left">
-              <div className="logo" />
+              <Menu />
             </div>
             <div className="header-right">
               <Search placeholder="Search here" changeCallback={changeSearchCallback} />
-              <span className="icon icon-settings" onClick={handleOpenSettings} />
+              <span className="icon icon-settings" />
             </div>
           </header>
           <section className="content">
+            <Sidebar />
             <main>
               {!appManager.isEmpty() && searchResult === null ? <TabsetList /> : <SearchResult tabs={searchResult} />}
             </main>
@@ -98,7 +105,7 @@ const YiTab = () => {
             </aside>
           </section>
         </div>
-      </>
+      </RecoilRoot>
     )
   );
 };

@@ -32,6 +32,7 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-test-renderer": "^16.13.1",
+        "recoil": "0.0.8",
         "store": "^2.0.12",
         "style-loader": "^0.20.3",
         "ts-jest": "^26.0.0",

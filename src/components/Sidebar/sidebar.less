@@ -1,0 +1,41 @@
+@left-init: -220px;
+.sidebar {
+  -webkit-box-shadow: 6px -3px 6px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px -3px 6px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px -3px 6px -5px rgba(0, 0, 0, 0.75);
+  position: fixed;
+  background-color: #ffffff;
+  height: 100vh;
+  width: 180px;
+  padding: 15px;
+  left: @left-init;
+}
+.sidebar.open {
+  -webkit-animation: slide-right 0.5s forwards;
+  animation: slide 0.5s forwards;
+  transition-property: left;
+  transition-duration: 5s;
+  transition-delay: 2s;
+}
+@-webkit-keyframes slide-right {
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slide-right {
+  100% {
+    left: 0;
+  }
+}
+@-webkit-keyframes slide-left {
+  100% {
+    left: @left-init;
+  }
+}
+
+@keyframes slide-left {
+  100% {
+    left: @left-init;
+  }
+}
