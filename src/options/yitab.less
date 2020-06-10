@@ -101,7 +101,14 @@ header {
     padding: 15px 0;
     width: 96vw;
     max-width: 920px;
+    min-width: 920px;
+    max-height: 90vh;
+    overflow: scroll;
   }
+  main::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
   .aside-container {
     flex-grow: 1;
     margin: 17px 15px;
