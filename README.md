@@ -1,6 +1,12 @@
-# Chrome Extension (built with TypeScript + React)
+# YiTab Chrome Extension (built with TypeScript + React)
 
-> This project is a boilerplate project to allow you to quickly build chrome extensions using TypeScript and React.
+> This project is My React-TypeScript clone to famous extension [OneTab](https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall?hl=en)
+
+`YiTab` allows you to free the chrome memory and save all open Tabs with just one click. You can restore all the URLs with one click, too. It can be very helpful, if you wanna clean up a couple of open Tabs, without losing all of them.
+
+I build it to do some experiment with React + TypeScript. Have a fun with it.
+
+![](app.png)
 
 ## Building
 

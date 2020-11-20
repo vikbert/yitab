@@ -12,8 +12,6 @@ import useVisibility from '../hooks/useVisibility';
 import NewTabForm from './NewTabForm';
 import TabType from '../models/TabType';
 import TabSetType from '../models/TabSetType';
-import Menu from '../components/Menu';
-import Sidebar from '../components/Sidebar';
 import '../styles/animation.less';
 import './yitab.less';
 
@@ -84,18 +82,11 @@ const YiTab = () => {
           <NewTabForm tabsetId={tabsetId} addNewTabCallback={addNewTabCallback} />
         </Dialog>
         <div className="wrapper">
-          <header className="header">
-            <div className="header-left">
-              <Menu />
-            </div>
-            <div className="header-right">
-              <Search placeholder="Search here" changeCallback={changeSearchCallback} />
-              <span className="icon icon-settings" />
-            </div>
-          </header>
           <section className="content">
-            <Sidebar />
             <main>
+              <div className="search-container">
+                <Search placeholder="" changeCallback={changeSearchCallback} />
+              </div>
               {!appManager.isEmpty() && searchResult === null ? <TabsetList /> : <SearchResult tabs={searchResult} />}
             </main>
             <aside className="aside-container">
