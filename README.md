@@ -1,6 +1,6 @@
 <div align="center">
   <!-- Logo and title and sub-title -->
-  <img src="logo.png" alt="logo" width="120"/>
+  <img src="img/logo.png" alt="logo" width="120"/>
   <h1 style="font-weight: bolder; color: black; margin-top: 0px">
     YiTab
   </h1>
@@ -31,12 +31,12 @@
 ---
 
 ## Getting started
-![](app.png)
+![](img/app.png)
 1.  Complete the steps to build the project above
 2.  Go to [_chrome://extensions_](chrome://extensions) in Google Chrome
 3.  With the developer mode checkbox ticked, click **Load unpacked extension...** and select the `dist` folder to load the extension
 
-![](howto.png)
+![](img/howto.png)
 
 
 ## Building and Development
