@@ -38,7 +38,7 @@
         "ts-jest": "^26.0.0",
         "ts-loader": "^4.0.1",
         "typescript": "^3.9.3",
-        "webpack": "^4.42.1",
+        "webpack": "^5.104.1",
         "webpack-cli": "^3.3.11",
         "webpack-merge": "^4.2.2"
     },
